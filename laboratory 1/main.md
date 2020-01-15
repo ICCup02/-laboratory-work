@@ -160,12 +160,21 @@
 <br/><br/>
 
 10. Выполните задание 9 изменив программу на следующую:
+
 <center>
 
-<img src="resourses\pictures\16.PNG"><br/>
-Рис. 18. Код программы</center>
+<img src="resourses\pictures\16.PNG">
+
+<br/>
+
+Рис. 18. Код программы
+
+</center>
+
+
 <br/><br/>Значения переменной i в 5 и 6 строках показаны на рисунке 19.
-<center>
-<img src="resourses\pictures\8.PNG"></center>
+
+<img src="resourses\pictures\8.PNG" style = "text-align: center">
+
 <center>Рис. 19. Переменная i</center>
 <br/><br/><br/>Вывод: Все цели и задачи лабораторной работы были выполнены в полном объеме. Были получены навыки в работе с репозиториями и вообще с git , с Visual Studio на языке C++ и с языком разметки Markdown.
