@@ -35,11 +35,8 @@
 Для того чтобы создать консольное приложение C++ нужно зайти в Visual Studio и нажать на вкладку "Создание проекта". Это показано на рисунке 1.
 <center>
 
-<img src="resourses\pictures\17.PNG">
-
-<br/> 
-
-Рис. 1. Создание проекта</center>
+<img src="resourses\pictures\17.PNG"> </center><br/>
+<center>Рис. 1. Создание проекта</center>
 <br/><br/> После нужно было выбрать пункт "Консольное приложение" и нажать "Далее". Это показано на рисунке 2.
 <center>
 
@@ -53,7 +50,7 @@
 <br/><br/> На данном этапе создание консольного приложения закончено. Консольное приложение показано на рисунке 4.
 <center>
 
-<img src="resourses\pictures\20.PNG">)<br/>
+<img src="resourses\pictures\20.PNG"><br/>
 Рис. 4. Консольное приложение</center>
 <br/><br/>
 
@@ -160,21 +157,13 @@
 <br/><br/>
 
 10. Выполните задание 9 изменив программу на следующую:
-
 <center>
 
-<img src="resourses\pictures\16.PNG">
-
-<br/>
-
-Рис. 18. Код программы
-
-</center>
-
-
+<img src="resourses\pictures\16.PNG"><br/>
+Рис. 18. Код программы</center>
 <br/><br/>Значения переменной i в 5 и 6 строках показаны на рисунке 19.
+<center>
 
-<img src="resourses\pictures\8.PNG" style = "text-align: center">
-
+<img src="resourses\pictures\8.PNG"></center><br/>
 <center>Рис. 19. Переменная i</center>
 <br/><br/><br/>Вывод: Все цели и задачи лабораторной работы были выполнены в полном объеме. Были получены навыки в работе с репозиториями и вообще с git , с Visual Studio на языке C++ и с языком разметки Markdown.
