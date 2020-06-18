@@ -1,0 +1,5 @@
+*.v*
+*.sln
+Debug
+googletest*
+build-main*
