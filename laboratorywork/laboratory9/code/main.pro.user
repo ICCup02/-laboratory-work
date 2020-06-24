@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.12.3, 2020-06-18T14:39:26. -->
+<!-- Written by QtCreator 4.12.3, 2020-06-20T14:14:26. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -308,9 +308,8 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:F:/git/Lab/-Programmer-/laboratorywork/laboratory9/code/main.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">F:/git/Lab/-Programmer-/laboratorywork/laboratory9/code/main.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:F:/git/-Programmer-/laboratorywork/laboratory9/code/main.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">F:/git/-Programmer-/laboratorywork/laboratory9/code/main.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>

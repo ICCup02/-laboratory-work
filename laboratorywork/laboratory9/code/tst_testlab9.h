@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "lockcontroller.h"
+
 using namespace testing;
 using ::testing::Return;
 
@@ -25,162 +26,157 @@ class MockILatch : public ILatch {
 
 TEST(Calculator, Test1Wait)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(keypad, wait())
+    EXPECT_CALL(MIKeypad, wait())
             .Times(1);
-    lc.wait();
+    LC.wait();
 }
 
 TEST(Calculator, Test2IsDoorOpen_lock)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(latch, getDoorStatus())
+    EXPECT_CALL(MILatch, getDoorStatus())
             .Times(1)
             .WillOnce(Return(DoorStatus::CLOSE));
-    bool res = lc.isDoorOpen();
-    EXPECT_FALSE(res);
+
+    ASSERT_FALSE(LC.isDoorOpen());
 }
 
 TEST(Calculator, Test3IsDoorOpen_unlock)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(latch, getDoorStatus())
+    EXPECT_CALL(MILatch, getDoorStatus())
             .Times(1)
             .WillOnce(Return(DoorStatus::OPEN));
-    bool res = lc.isDoorOpen();
-    EXPECT_TRUE(res);
+
+    ASSERT_TRUE(LC.isDoorOpen());
 }
 
 TEST(Calculator, Test4UnlockDoor)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(latch, open())
+    EXPECT_CALL(MILatch, open())
             .Times(1)
             .WillOnce(Return(DoorStatus::OPEN));
 
-    EXPECT_EQ(lc.unlockDoor(), DoorStatus::OPEN);
+    ASSERT_EQ(LC.unlockDoor(), DoorStatus::OPEN);
 }
 
 TEST(Calculator, Test5LockDoor)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(latch, close())
+    EXPECT_CALL(MILatch, close())
             .Times(1)
             .WillOnce(Return(DoorStatus::CLOSE));
 
-    EXPECT_EQ(lc.lockDoor(), DoorStatus::CLOSE);
+    ASSERT_EQ(LC.lockDoor(), DoorStatus::CLOSE);
 }
 
 TEST(Calculator, Test6HardWareCheckStatusOk)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(keypad, isActive())
+    EXPECT_CALL(MIKeypad, isActive())
             .Times(1)
             .WillOnce(Return(true));
 
-    EXPECT_CALL(latch, isActive())
+    EXPECT_CALL(MILatch, isActive())
             .Times(1)
             .WillOnce(Return(true));
 
-    auto res = lc.hardWareCheck();
-    EXPECT_EQ(res, HardWareStatus::OK);
+    ASSERT_EQ(LC.hardWareCheck(), HardWareStatus::OK);
 }
 
 TEST(Calculator, Test7HardWareCheck_error)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(nullptr, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(nullptr, &MILatch);
 
-    EXPECT_CALL(keypad, isActive())
+    EXPECT_CALL(MIKeypad, isActive())
             .Times(AtLeast(0))
             .WillOnce(Return(true));
 
-    EXPECT_CALL(latch, isActive())
+    EXPECT_CALL(MILatch, isActive())
             .Times(AtLeast(0))
             .WillOnce(Return(true));
 
-    auto res = lc.hardWareCheck();
-    EXPECT_EQ(res, HardWareStatus::ERROR);
+    ASSERT_EQ(LC.hardWareCheck(), HardWareStatus::ERROR);
 }
 
 TEST(Calculator, Test8HardWareCheck_error_2)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    EXPECT_CALL(keypad, isActive())
+    EXPECT_CALL(MIKeypad, isActive())
             .Times(AtLeast(0))
             .WillOnce(Return(true));
 
-    EXPECT_CALL(latch, isActive())
+    EXPECT_CALL(MILatch, isActive())
             .Times(AtLeast(0))
             .WillOnce(Return(false));
 
-    auto res = lc.hardWareCheck();
-    EXPECT_EQ(res, HardWareStatus::ERROR);
+    ASSERT_EQ(LC.hardWareCheck(), HardWareStatus::ERROR);
 }
 
 TEST(Calculator, Test9IsCorrectPassword)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    PasswordResponse ans;
-    ans.status = PasswordResponse::Status::OK;
-    ans.password = "0000";
+    PasswordResponse PRes;
+    PRes.status = PasswordResponse::Status::OK;
+    PRes.password = "0000";
 
-    EXPECT_CALL(keypad, requestPassword())
+    EXPECT_CALL(MIKeypad, requestPassword())
             .Times(1)
-            .WillOnce(Return(ans));
+            .WillOnce(Return(PRes));
 
-    auto res = lc.isCorrectPassword();
-    EXPECT_TRUE(res);
+    ASSERT_TRUE(LC.isCorrectPassword());
 }
 
 TEST(Calculator, Test10IsCorrectPassword_error)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    PasswordResponse ans;
-    ans.status = PasswordResponse::Status::OK;
-    ans.password = "6666";
+    PasswordResponse PRes;
+    PRes.status = PasswordResponse::Status::OK;
+    PRes.password = "6666";
 
-    EXPECT_CALL(keypad, requestPassword())
+    EXPECT_CALL(MIKeypad, requestPassword())
             .Times(1)
-            .WillOnce(Return(ans));
+            .WillOnce(Return(PRes));
 
-    auto res = lc.isCorrectPassword();
-    EXPECT_FALSE(res);
+    ASSERT_FALSE(LC.isCorrectPassword());
 }
 
 TEST(Calculator, Test11ResetPassword)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
     PasswordResponse old_pass;
     old_pass.status = PasswordResponse::Status::OK;
@@ -190,58 +186,48 @@ TEST(Calculator, Test11ResetPassword)
     new_pass.status = PasswordResponse::Status::OK;
     new_pass.password = "6666";
 
-     EXPECT_CALL(keypad, requestPassword())
+     EXPECT_CALL(MIKeypad, requestPassword())
             .Times(2)
             .WillOnce(Return(old_pass))
             .WillOnce(Return(new_pass));
 
-    lc.resetPassword();
+    LC.resetPassword();
 
-    EXPECT_CALL(keypad, requestPassword())
+    EXPECT_CALL(MIKeypad, requestPassword())
             .Times(1)
             .WillOnce(Return(new_pass));
 
-    auto res = lc.isCorrectPassword();
-    EXPECT_TRUE(res);
+    ASSERT_TRUE( LC.isCorrectPassword());
 }
 
 TEST(Calculator, Test12ResetPassword_2)
 {
-    MockIKeypad keypad;
-    MockILatch latch;
-    LockController lc = LockController(&keypad, &latch);
+    MockIKeypad MIKeypad;
+    MockILatch MILatch;
+    LockController LC = LockController(&MIKeypad, &MILatch);
 
-    PasswordResponse old_pass;
-    old_pass.status = PasswordResponse::Status::OK;
-    old_pass.password = "6666";
+    PasswordResponse DefPass, OldPass, NewPass;
 
-    PasswordResponse default_pass;
-    default_pass.status = PasswordResponse::Status::OK;
-    default_pass.password = "0000";
+    DefPass.status = PasswordResponse::Status::OK;
+    OldPass.status = PasswordResponse::Status::OK;
+    NewPass.status = PasswordResponse::Status::OK;
 
-    EXPECT_CALL(keypad, requestPassword())
-            .Times(2)
-            .WillOnce(Return(default_pass))
-            .WillOnce(Return(old_pass));
-    lc.resetPassword();
+    DefPass.password = "0000";
+    OldPass.password = "6666";
+    NewPass.password = "9999";
 
+    EXPECT_CALL(MIKeypad, requestPassword())
+            .Times(5)
+            .WillOnce(Return(DefPass))
+            .WillOnce(Return(OldPass))
+            .WillOnce(Return(OldPass))
+            .WillOnce(Return(NewPass))
+            .WillOnce(Return(NewPass));
 
-    PasswordResponse new_pass;
-    new_pass.status = PasswordResponse::Status::OK;
-    new_pass.password = "9999";
+    LC.resetPassword();
+    LC.resetPassword();
 
-    EXPECT_CALL(keypad, requestPassword())
-            .Times(2)
-            .WillOnce(Return(old_pass))
-            .WillOnce(Return(new_pass));
-    lc.resetPassword();
-
-    EXPECT_CALL(keypad, requestPassword())
-            .Times(1)
-            .WillOnce(Return(new_pass));
-
-    auto res = lc.isCorrectPassword();
-    EXPECT_TRUE(res);
+    ASSERT_TRUE(LC.isCorrectPassword());
 }
 
 
