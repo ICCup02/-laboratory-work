@@ -34,7 +34,7 @@ struct Coordinate {
 		X = x; Y = y;
 	}
 };
-std::vector<Coordinate> Close;
+std::vector<Coordinate> RepeatCell;
 bool CheckWrongData(int x, int y) {
 	if ((x < 25) && (x >= 0) && (y < 27) && (y >= 0))
 		return true;
@@ -44,8 +44,8 @@ void Search(int x, int y) {
 
 
 	if (CheckWrongData) {
-		for (int i = 0; i < Close.size(); i++) {
-			if ((x == Close[i].X) && (y == Close[i].Y))
+		for (int i = 0; i < RepeatCell.size(); i++) {
+			if ((x == RepeatCell[i].X) && (y == RepeatCell[i].Y))
 			return;
 		}
 		if ((map[x][y] != '#') && (map[x][y] != ' ')) {
@@ -53,7 +53,7 @@ void Search(int x, int y) {
 		}
 		else if (map[x][y] == ' ') {
 			Coordinate temp(x,y);
-			Close.push_back(temp);
+			RepeatCell.push_back(temp);
 			Search(x - 1, y);
 			Search(x + 1, y);
 			Search(x, y - 1);
